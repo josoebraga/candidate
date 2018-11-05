@@ -3,7 +3,9 @@ package br.edu.ulbra.election.candidate.api.v1;
 import br.edu.ulbra.election.candidate.input.v1.CandidateInput;
 import br.edu.ulbra.election.candidate.output.v1.CandidateOutput;
 import br.edu.ulbra.election.candidate.output.v1.GenericOutput;
+import br.edu.ulbra.election.candidate.service.CandidateService;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -13,10 +15,17 @@ import java.util.List;
 @RequestMapping("/v1/candidate")
 public class CandidateApi {
 
+    CandidateService candidateService;
+
+    @Autowired
+    public CandidateApi(CandidateService candidateService){
+        this.candidateService = candidateService;
+    }
+
     @GetMapping("/")
     @ApiOperation(value = "Get candidates List")
     public List<CandidateOutput> getAll(){
-        return new ArrayList<>();
+        return candidateService.getAll();
     }
 
     @GetMapping("/{candidateId}")
