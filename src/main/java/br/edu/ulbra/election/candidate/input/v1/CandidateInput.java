@@ -16,7 +16,7 @@ public class CandidateInput {
     private Long electionId;
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -24,7 +24,7 @@ public class CandidateInput {
     }
 
     public Long getPartyId() {
-        return partyId;
+        return this.partyId;
     }
 
     public void setPartyId(Long partyId) {
@@ -32,7 +32,7 @@ public class CandidateInput {
     }
 
     public Long getNumberElection() {
-        return numberElection;
+        return this.numberElection;
     }
 
     public void setNumberElection(Long numberElection) {
@@ -40,7 +40,7 @@ public class CandidateInput {
     }
 
     public Long getElectionId() {
-        return electionId;
+        return this.electionId;
     }
 
     public void setElectionId(Long electionId) {

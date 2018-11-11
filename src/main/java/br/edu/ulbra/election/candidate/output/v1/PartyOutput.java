@@ -16,7 +16,7 @@ public class PartyOutput {
     private Integer number;
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Long id) {
@@ -24,7 +24,7 @@ public class PartyOutput {
     }
 
     public String getCode() {
-        return code;
+        return this.code;
     }
 
     public void setCode(String code) {
@@ -32,7 +32,7 @@ public class PartyOutput {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -40,7 +40,7 @@ public class PartyOutput {
     }
 
     public Integer getNumber() {
-        return number;
+        return this.number;
     }
 
     public void setNumber(Integer number) {

@@ -45,4 +45,44 @@ public class CandidateTest {
     @Test
     public void setPartyId() {
     }
+
+    @Test
+    public void getId1() {
+    }
+
+    @Test
+    public void setId1() {
+    }
+
+    @Test
+    public void getName1() {
+    }
+
+    @Test
+    public void setName1() {
+    }
+
+    @Test
+    public void getNumber1() {
+    }
+
+    @Test
+    public void setNumber1() {
+    }
+
+    @Test
+    public void getElectionId1() {
+    }
+
+    @Test
+    public void setElectionId1() {
+    }
+
+    @Test
+    public void getPartyId1() {
+    }
+
+    @Test
+    public void setPartyId1() {
+    }
 }

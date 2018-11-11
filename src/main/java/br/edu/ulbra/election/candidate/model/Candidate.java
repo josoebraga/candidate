@@ -23,7 +23,7 @@ public class Candidate {
 
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Long id) {
@@ -31,7 +31,7 @@ public class Candidate {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -39,7 +39,7 @@ public class Candidate {
     }
 
     public Long getNumber() {
-        return number;
+        return this.number;
     }
 
     public void setNumber(Long number) {
@@ -47,7 +47,7 @@ public class Candidate {
     }
 
     public Long getElectionId() {
-        return electionId;
+        return this.electionId;
     }
 
     public void setElectionId(Long electionId) {
@@ -55,7 +55,7 @@ public class Candidate {
     }
 
     public Long getPartyId() {
-        return partyId;
+        return this.partyId;
     }
 
     public void setPartyId(Long partyId) {

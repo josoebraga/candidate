@@ -37,4 +37,36 @@ public class CandidateInputTest {
     @Test
     public void setElectionId() {
     }
+
+    @Test
+    public void getName1() {
+    }
+
+    @Test
+    public void setName1() {
+    }
+
+    @Test
+    public void getPartyId1() {
+    }
+
+    @Test
+    public void setPartyId1() {
+    }
+
+    @Test
+    public void getNumberElection1() {
+    }
+
+    @Test
+    public void setNumberElection1() {
+    }
+
+    @Test
+    public void getElectionId1() {
+    }
+
+    @Test
+    public void setElectionId1() {
+    }
 }

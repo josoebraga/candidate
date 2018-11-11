@@ -5,12 +5,13 @@ import br.edu.ulbra.election.candidate.input.v1.CandidateInput;
 import br.edu.ulbra.election.candidate.model.Candidate;
 import br.edu.ulbra.election.candidate.output.v1.GenericOutput;
 import br.edu.ulbra.election.candidate.output.v1.CandidateOutput;
+import br.edu.ulbra.election.candidate.output.v1.PartyOutput;
+import br.edu.ulbra.election.candidate.output.v1.ElectionOutput;
 import br.edu.ulbra.election.candidate.repository.CandidateRepository;
 import org.apache.commons.lang.StringUtils;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Type;
@@ -22,16 +23,14 @@ public class CandidateService {
     private final CandidateRepository candidateRepository;
 
     private final ModelMapper modelMapper;
-    private final PasswordEncoder passwordEncoder;
 
     private static final String MESSAGE_INVALID_ID = "Invalid id";
     private static final String MESSAGE_CANDIDATE_NOT_FOUND = "Candidate not found";
 
     @Autowired
-    public CandidateService(CandidateRepository candidateRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder){
+    public CandidateService(CandidateRepository candidateRepository, ModelMapper modelMapper){
         this.candidateRepository = candidateRepository;
         this.modelMapper = modelMapper;
-        this.passwordEncoder = passwordEncoder;
     }
 
     public List<CandidateOutput> getAll(){
@@ -40,6 +39,7 @@ public class CandidateService {
     }
 
     public CandidateOutput create(CandidateInput candidateInput) {
+        modelMapper.getConfiguration().setAmbiguityIgnored(true);
         validateInput(candidateInput, false);
         Candidate candidate = modelMapper.map(candidateInput, Candidate.class);
         candidate = candidateRepository.save(candidate);
@@ -47,6 +47,7 @@ public class CandidateService {
     }
 
     public CandidateOutput getById(Long candidateId){
+        modelMapper.getConfiguration().setAmbiguityIgnored(true);
         if (candidateId == null){
             throw new GenericOutputException(MESSAGE_INVALID_ID);
         }
@@ -59,6 +60,9 @@ public class CandidateService {
     }
 
     public CandidateOutput update(Long candidateId, CandidateInput candidateInput) {
+
+        modelMapper.getConfiguration().setAmbiguityIgnored(true);
+
         if (candidateId == null){
             throw new GenericOutputException(MESSAGE_INVALID_ID);
         }
@@ -78,6 +82,7 @@ public class CandidateService {
     }
 
     public GenericOutput delete(Long candidateId) {
+        modelMapper.getConfiguration().setAmbiguityIgnored(true);
         if (candidateId == null){
             throw new GenericOutputException(MESSAGE_INVALID_ID);
         }
