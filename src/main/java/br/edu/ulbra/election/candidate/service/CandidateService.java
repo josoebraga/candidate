@@ -73,7 +73,7 @@ public class CandidateService {
             throw new GenericOutputException(MESSAGE_CANDIDATE_NOT_FOUND);
         }
 
-        candidate.setName(candidateInput.getName());
+        candidate.setName(candidateInput.getName()); /* Tratado no voter input */
         candidate.setNumber(candidateInput.getNumberElection());
         candidate.setElectionId(candidateInput.getElectionId());
         candidate.setPartyId(candidateInput.getPartyId());
