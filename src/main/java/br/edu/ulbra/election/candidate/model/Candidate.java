@@ -13,7 +13,7 @@ public class Candidate {
     private String name;
 
     @Column(nullable = false)
-    private Long number;
+    private Long numberElection;
 
     @Column(nullable = false)
     private Long electionId;
@@ -21,9 +21,8 @@ public class Candidate {
     @Column(nullable = false)
     private Long partyId;
 
-
     public Long getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(Long id) {
@@ -31,23 +30,23 @@ public class Candidate {
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public Long getNumber() {
-        return this.number;
+    public Long getNumberElection() {
+        return numberElection;
     }
 
-    public void setNumber(Long number) {
-        this.number = number;
+    public void setNumberElection(Long numberElection) {
+        this.numberElection = numberElection;
     }
 
     public Long getElectionId() {
-        return this.electionId;
+        return electionId;
     }
 
     public void setElectionId(Long electionId) {
@@ -55,13 +54,11 @@ public class Candidate {
     }
 
     public Long getPartyId() {
-        return this.partyId;
+        return partyId;
     }
 
     public void setPartyId(Long partyId) {
         this.partyId = partyId;
     }
-
-
 
 }

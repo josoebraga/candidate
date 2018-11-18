@@ -16,7 +16,7 @@ public class ElectionOutput {
     private String description;
 
     public Long getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(Long id) {
@@ -24,7 +24,7 @@ public class ElectionOutput {
     }
 
     public Integer getYear() {
-        return this.year;
+        return year;
     }
 
     public void setYear(Integer year) {
@@ -32,7 +32,7 @@ public class ElectionOutput {
     }
 
     public String getStateCode() {
-        return this.stateCode;
+        return stateCode;
     }
 
     public void setStateCode(String stateCode) {
@@ -40,7 +40,7 @@ public class ElectionOutput {
     }
 
     public String getDescription() {
-        return this.description;
+        return description;
     }
 
     public void setDescription(String description) {

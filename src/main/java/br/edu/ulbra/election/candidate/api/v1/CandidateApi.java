@@ -3,26 +3,21 @@ package br.edu.ulbra.election.candidate.api.v1;
 import br.edu.ulbra.election.candidate.input.v1.CandidateInput;
 import br.edu.ulbra.election.candidate.output.v1.CandidateOutput;
 import br.edu.ulbra.election.candidate.output.v1.GenericOutput;
-import br.edu.ulbra.election.candidate.repository.CandidateRepository;
 import br.edu.ulbra.election.candidate.service.CandidateService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/v1/candidate")
 public class CandidateApi {
 
-    private final CandidateRepository candidateRepository;
     private final CandidateService candidateService;
 
     @Autowired
-    public CandidateApi(CandidateRepository candidateRepository, CandidateService candidateService){
-        this.candidateRepository = candidateRepository;
+    public CandidateApi(CandidateService candidateService){
         this.candidateService = candidateService;
     }
 
