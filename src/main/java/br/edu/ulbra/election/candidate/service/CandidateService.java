@@ -29,7 +29,9 @@ public class CandidateService {
     private final ModelMapper modelMapper;
 
     private static final String MESSAGE_INVALID_ID = "Invalid id";
+    private static final String MESSAGE_INVALID_CANDIDATE_NUMBER = "Invalid candidate Number";
     private static final String MESSAGE_INVALID_ELECTION_ID = "Invalid Election Id";
+    private static final String MESSAGE_INVALID_PARTY_ID = "Invalid Party Id";
     private static final String MESSAGE_CANDIDATE_NOT_FOUND = "Candidate not found";
 
     @Autowired
@@ -47,6 +49,24 @@ public class CandidateService {
         } catch (Exception e) {
             throw new GenericOutputException(MESSAGE_CANDIDATE_NOT_FOUND);
         }
+    }
+
+    public List<CandidateOutput> getAllByPartyId(Long partyId){
+        try {
+            List<Candidate> candidateList = (List<Candidate>) candidateRepository.findAllByPartyId(partyId);
+            return candidateList.stream().map(this::toCandidateOutput).collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new GenericOutputException(MESSAGE_INVALID_PARTY_ID);
+            }
+    }
+
+    public List<Long> findFirstByPartyId(Long partyId){
+        try {
+            List<Candidate> candidateList = (List<Candidate>) candidateRepository.findFirstByPartyId(partyId);
+            return candidateList.stream().map(this::toOnlyCandidateOutput).collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new GenericOutputException(MESSAGE_INVALID_PARTY_ID);
+            }
     }
 
     public CandidateOutput create(CandidateInput candidateInput) {
@@ -69,6 +89,19 @@ public class CandidateService {
 
         return modelMapper.map(candidate, CandidateOutput.class);
     }
+
+    public CandidateOutput getNumberElection(Long candidateNumber){
+        if (candidateNumber == null){
+            throw new GenericOutputException(MESSAGE_INVALID_CANDIDATE_NUMBER);
+        }
+
+        Candidate candidate = candidateRepository.findFirstByNumberElection(candidateNumber);
+        if (candidate == null){
+            throw new GenericOutputException(MESSAGE_INVALID_CANDIDATE_NUMBER);
+        }
+
+        return modelMapper.map(candidate, CandidateOutput.class);
+    } /* Adição */
 
     public CandidateOutput update(Long candidateId, CandidateInput candidateInput) {
         if (candidateId == null){
@@ -157,6 +190,11 @@ public class CandidateService {
         PartyOutput partyOutput = partyClientService.getById(candidate.getPartyId());
         candidateOutput.setPartyOutput(partyOutput);
         return candidateOutput;
+    }
+
+    public Long toOnlyCandidateOutput(Candidate candidate){
+        CandidateOutput candidateOutput = modelMapper.map(candidate, CandidateOutput.class);
+        return candidateOutput.getPartyId();
     }
 
 

@@ -33,6 +33,24 @@ public class CandidateApi {
         return candidateService.getById(candidateId);
     }
 
+    @GetMapping("/getByNumber/{candidateNumber}")
+    @ApiOperation(value = "Get candidate by Number")
+    public CandidateOutput getByCandidateNumber(@PathVariable Long candidateNumber){
+        return candidateService.getNumberElection(candidateNumber);
+    } /*  Adição */
+
+    @GetMapping("/getByPartyId/{partyId}")
+    @ApiOperation(value = "Get all candidate by Party Id")
+    public List<CandidateOutput> getAllByPartyId(@PathVariable Long partyId){
+        return candidateService.getAllByPartyId(partyId);
+    } /*  Adição */
+
+    @GetMapping("/getFirstByPartyId/{partyId}")
+    @ApiOperation(value = "Get all candidate by Party Id")
+    public List<Long> findFirstByPartyId(@PathVariable Long partyId){
+        return candidateService.findFirstByPartyId(partyId);
+    } /*  Adição */
+
     @PostMapping("/")
     @ApiOperation(value = "Create new candidate")
     public CandidateOutput create(@RequestBody CandidateInput candidateInput){
