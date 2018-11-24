@@ -10,5 +10,6 @@ public interface CandidateRepository extends CrudRepository<Candidate, Long> {
     Candidate findFirstByNumberElection(Long numberElection);
     List<Candidate> findAllByPartyId(Long partyId);
     List<Candidate> findFirstByPartyId(Long partyId);
+    List<Candidate> findFirstByElectionId(Long electionId);
     Candidate findByPartyId(Long partyId);
 }

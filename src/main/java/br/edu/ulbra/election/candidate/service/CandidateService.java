@@ -2,6 +2,7 @@ package br.edu.ulbra.election.candidate.service;
 
 import br.edu.ulbra.election.candidate.client.ElectionClientService;
 import br.edu.ulbra.election.candidate.client.PartyClientService;
+import br.edu.ulbra.election.candidate.client.VoteClientService;
 import br.edu.ulbra.election.candidate.exception.GenericOutputException;
 import br.edu.ulbra.election.candidate.input.v1.CandidateInput;
 import br.edu.ulbra.election.candidate.model.Candidate;
@@ -25,6 +26,7 @@ public class CandidateService {
     private final CandidateRepository candidateRepository;
     private final ElectionClientService electionClientService;
     private final PartyClientService partyClientService;
+    private final VoteClientService voteClientService;
 
     private final ModelMapper modelMapper;
 
@@ -35,11 +37,12 @@ public class CandidateService {
     private static final String MESSAGE_CANDIDATE_NOT_FOUND = "Candidate not found";
 
     @Autowired
-    public CandidateService(CandidateRepository candidateRepository, ModelMapper modelMapper, ElectionClientService electionClientService, PartyClientService partyClientService){
+    public CandidateService(CandidateRepository candidateRepository, ModelMapper modelMapper, ElectionClientService electionClientService, PartyClientService partyClientService, VoteClientService voteClientService){
         this.candidateRepository = candidateRepository;
         this.modelMapper = modelMapper;
         this.electionClientService = electionClientService;
         this.partyClientService = partyClientService;
+        this.voteClientService = voteClientService;
     }
 
     public List<CandidateOutput> getAll(){
@@ -67,6 +70,15 @@ public class CandidateService {
         } catch (Exception e) {
             throw new GenericOutputException(MESSAGE_INVALID_PARTY_ID);
             }
+    }
+
+    public List<Long> findFirstByElectionId(Long electionId){
+        try {
+            List<Candidate> candidateList = (List<Candidate>) candidateRepository.findFirstByElectionId(electionId);
+            return candidateList.stream().map(this::toOnlyCandidateOutputElectionId).collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new GenericOutputException(MESSAGE_INVALID_ELECTION_ID);
+        }
     }
 
     public CandidateOutput create(CandidateInput candidateInput) {
@@ -115,6 +127,19 @@ public class CandidateService {
             throw new GenericOutputException(MESSAGE_CANDIDATE_NOT_FOUND);
         }
 
+/******************************/
+//Não pode ser excluído ou alterado um candidato caso a eleição já tenha votos vinculados.
+
+
+        String electionExistsVote = voteClientService.getById(candidateInput.getElectionId());
+        System.out.println(electionExistsVote.trim());
+
+        if (!electionExistsVote.trim().equals("0")){
+            throw new GenericOutputException("The election have votes, then is not possible to change it!");
+        }
+
+/******************************/
+
         candidate.setElectionId(candidateInput.getElectionId());
         candidate.setNumberElection(candidateInput.getNumberElection());
         candidate.setName(candidateInput.getName());
@@ -132,6 +157,18 @@ public class CandidateService {
         if (candidate == null){
             throw new GenericOutputException(MESSAGE_CANDIDATE_NOT_FOUND);
         }
+
+/******************************/
+//Não pode ser excluído ou alterado um candidato caso a eleição já tenha votos vinculados.
+
+        String electionExistsVote = voteClientService.getById(candidate.getElectionId());
+        System.out.println(electionExistsVote.trim());
+
+        if (!electionExistsVote.trim().equals("0")){
+            throw new GenericOutputException("The election have votes, then is not possible to change it!");
+        }
+
+/******************************/
 
         candidateRepository.delete(candidate);
 
@@ -195,6 +232,11 @@ public class CandidateService {
     public Long toOnlyCandidateOutput(Candidate candidate){
         CandidateOutput candidateOutput = modelMapper.map(candidate, CandidateOutput.class);
         return candidateOutput.getPartyId();
+    }
+
+    public Long toOnlyCandidateOutputElectionId(Candidate candidate){
+        CandidateOutput candidateOutput = modelMapper.map(candidate, CandidateOutput.class);
+        return candidateOutput.getId();
     }
 
 
