@@ -99,7 +99,16 @@ public class CandidateService {
             throw new GenericOutputException(MESSAGE_CANDIDATE_NOT_FOUND);
         }
 
-        return modelMapper.map(candidate, CandidateOutput.class);
+        CandidateOutput candidateOutput = modelMapper.map(candidate, CandidateOutput.class);
+        ElectionOutput electionOutput = electionClientService.getById(candidate.getElectionId());
+        candidateOutput.setElectionOutput(electionOutput);
+        PartyOutput partyOutput = partyClientService.getById(candidate.getPartyId());
+        candidateOutput.setPartyOutput(partyOutput);
+        return candidateOutput;
+
+//        return modelMapper.map(candidate, CandidateOutput.class);
+
+
     }
 
     public CandidateOutput getNumberElection(Long candidateNumber){
