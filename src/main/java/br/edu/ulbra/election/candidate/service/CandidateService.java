@@ -106,9 +106,6 @@ public class CandidateService {
         candidateOutput.setPartyOutput(partyOutput);
         return candidateOutput;
 
-//        return modelMapper.map(candidate, CandidateOutput.class);
-
-
     }
 
     public CandidateOutput getNumberElection(Long candidateNumber){
