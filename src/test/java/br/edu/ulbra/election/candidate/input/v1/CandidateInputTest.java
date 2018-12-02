@@ -69,4 +69,68 @@ public class CandidateInputTest {
     @Test
     public void setElectionId1() {
     }
+
+    @Test
+    public void getName2() {
+    }
+
+    @Test
+    public void setName2() {
+    }
+
+    @Test
+    public void getPartyId2() {
+    }
+
+    @Test
+    public void setPartyId2() {
+    }
+
+    @Test
+    public void getNumberElection2() {
+    }
+
+    @Test
+    public void setNumberElection2() {
+    }
+
+    @Test
+    public void getElectionId2() {
+    }
+
+    @Test
+    public void setElectionId2() {
+    }
+
+    @Test
+    public void getName3() {
+    }
+
+    @Test
+    public void setName3() {
+    }
+
+    @Test
+    public void getPartyId3() {
+    }
+
+    @Test
+    public void setPartyId3() {
+    }
+
+    @Test
+    public void getNumberElection3() {
+    }
+
+    @Test
+    public void setNumberElection3() {
+    }
+
+    @Test
+    public void getElectionId3() {
+    }
+
+    @Test
+    public void setElectionId3() {
+    }
 }

@@ -13,4 +13,20 @@ public class GenericOutputTest {
     @Test
     public void setMessage() {
     }
+
+    @Test
+    public void getMessage1() {
+    }
+
+    @Test
+    public void setMessage1() {
+    }
+
+    @Test
+    public void getMessage2() {
+    }
+
+    @Test
+    public void setMessage2() {
+    }
 }

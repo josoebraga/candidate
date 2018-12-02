@@ -9,4 +9,12 @@ public class CandidateApplicationTest {
     @Test
     public void main() {
     }
+
+    @Test
+    public void main1() {
+    }
+
+    @Test
+    public void main2() {
+    }
 }
